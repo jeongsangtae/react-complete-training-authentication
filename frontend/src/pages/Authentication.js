@@ -37,6 +37,10 @@ export const action = async ({ request }) => {
     throw json({ message: "Could not authenticate user." }, { status: 500 });
   }
 
-  // 백엔드에서 얻는 토큰을 관리하는 곳
+  const resData = await response.json();
+  const token = resData.token;
+
+  localStorage.setItem("token", token);
+
   return redirect("/");
 };
